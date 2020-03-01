@@ -55,8 +55,9 @@ function statement(invoice, plays) {
     return result;
 }
 
-function amountFor(aPerformance, play) {
+function amountFor(aPerformance) {
     let result = 0;
+    const play = playFor(perf);
     switch (play.type) {
         case "tragedy":
             result = 40000;
@@ -75,4 +76,8 @@ function amountFor(aPerformance, play) {
             throw new Error(`unknown type: ${play.type}`);
     }
     return result;
+}
+
+function playFor(aPerformance) {
+    return plays[aPerformance.playID];
 }
