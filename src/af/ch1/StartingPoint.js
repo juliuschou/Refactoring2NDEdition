@@ -57,7 +57,7 @@ function statement(invoice, plays) {
 
 function amountFor(aPerformance) {
     let result = 0;
-    const play = playFor(perf);
+    const play = playFor(aPerformance);
     switch (play.type) {
         case "tragedy":
             result = 40000;
