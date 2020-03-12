@@ -37,7 +37,6 @@ function statement(invoice, plays) {
         const play = plays[perf.playID];
         let thisAmount = amountFor(perf, play);
 
-        volumeCredits += volumeCreditsFor(perf);
 
         // print line for this order    
         result += ` ${play.name}: ${usd(thisAmount / 100)} (${perf.audience} seats)\n`;
@@ -49,6 +48,9 @@ function statement(invoice, plays) {
     return result;
 }
 
+for (let perf of invoice['performances']) {
+    volumeCredits += volumeCreditsFor(perf);
+}
 
 function volumeCreditsFor(aPerformance){
     let result = 0;
