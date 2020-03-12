@@ -32,10 +32,7 @@ function statement(invoice, plays) {
     let totalAmount = 0;
     let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
-    //const format = new Intl.NumberFormat("en-­US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format;
-    const format = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 })
-        .format;
-
+ 
     for (let perf of invoice['performances']) {
         const play = plays[perf.playID];
         let thisAmount = amountFor(perf, play);
@@ -55,9 +52,15 @@ function statement(invoice, plays) {
     return result;
 }
 
+function format(aNumber){
+   //const format = new Intl.NumberFormat("en-­US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format;
+
+    return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(aNumber);
+}
+
 function amountFor(aPerformance) {
     let result = 0;
-    const play = playFor(perf);
+    const play = playFor(aPerformance);
     switch (play.type) {
         case "tragedy":
             result = 40000;
@@ -79,5 +82,5 @@ function amountFor(aPerformance) {
 }
 
 function playFor(aPerformance) {
-    return plays[aPerformance.playID];
+    return plays[aPerformance.playID];
 }
