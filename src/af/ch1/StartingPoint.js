@@ -32,10 +32,7 @@ function statement(invoice, plays) {
     let result = `Statement for ${invoice.customer}\n`;
  
     for (let perf of invoice['performances']) {
-        const play = plays[perf.playID];
-
-        // print line for this order    
-        result += ` ${play.name}: ${usd(amountFor(perf) / 100)} (${perf.audience} seats)\n`;
+        result += ` ${playFor(perf).name}: ${usd(amountFor(perf) / 100)} (${perf.audience} seats)\n`;
     }
     
     let volumeCredits = totalVolumeCredits(invoice);
@@ -43,6 +40,7 @@ function statement(invoice, plays) {
     result += `Amount owed is ${usd(totalAmount(invoice) / 100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
     return result;
+
 }
 
 
