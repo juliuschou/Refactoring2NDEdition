@@ -93,7 +93,7 @@ function renderPlainText(data, plays) {
     function totalAmount(){
         let totalAmount = 0;
         for (let perf of data['performances']) {
-            totalAmount += data.amount;
+            totalAmount += perf.amount;
         }
         return totalAmount;    
     }
