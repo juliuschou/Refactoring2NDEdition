@@ -30,7 +30,7 @@ console.log(rlt);
 
 function statement(invoice, plays) {
     const statementData = {};
-    return renderPlainText(invoice, plays);
+    return renderPlainText(statementData, invoice, plays);
 }
 
 function renderPlainText(data, invoice, plays) {
