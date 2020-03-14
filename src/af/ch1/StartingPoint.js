@@ -33,6 +33,7 @@ function statement(invoice, plays) {
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerformance);
     statementData.totalAmount = totalAmount(statementData);
+    statementData.totalVolumeCredits = totalVolumeCredits(statementData);
 
     function enrichPerformance(aPerformance) {
         const result = Object.assign({}, aPerformance);
@@ -84,6 +85,13 @@ function statement(invoice, plays) {
         return totalAmount;    
     }
 
+    function totalVolumeCredits(data){
+        let result = 0;
+        for (let perf of data['performances']) {
+            result += perf.volumeCredits;
+        }
+        return result;
+    }    
     return renderPlainText(statementData, plays);
 }
 
@@ -92,32 +100,17 @@ function renderPlainText(data, plays) {
     for (let perf of data['performances']) {
         result += ` ${perf.play.name}: ${usd(data.amount / 100)} (${perf.audience} seats)\n`;
     }
-    
-    let volumeCredits = totalVolumeCredits();
-    
+       
     result += `Amount owed is ${usd(data.totalAmount / 100)}\n`;
-    result += `You earned ${volumeCredits} credits\n`;
+    result += `You earned ${data.totalVolumeCredits} credits\n`;
     return result;
-
-  
-    
-    function totalVolumeCredits(){
-        let result = 0;
-        for (let perf of data['performances']) {
-            result += perf.volumeCredits;
-        }
-        return result;
-    }
-
-    
+   
     function usd(aNumber){
        //const format = new Intl.NumberFormat("en-­US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format;
     
         return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(aNumber);
-    }
-    
- 
-       
+    }  
+        
 }
 
 
