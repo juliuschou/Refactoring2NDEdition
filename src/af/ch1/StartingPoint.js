@@ -76,21 +76,20 @@ function statement(invoice, plays) {
     
         return result;
     }
+    
+    /*
+        https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+        arr.reduce(callback[accumulator, currentValue, currentIndex, array], initialValue)
+     */
 
-    function totalAmount(data){
-        let totalAmount = 0;
-        for (let perf of data['performances']) {
-            totalAmount += perf.amount;
-        }
-        return totalAmount;    
+    function totalAmount(data) {
+        return data.performances
+        .reduce((total, p) => total + p.amount, 0);
     }
 
-    function totalVolumeCredits(data){
-        let result = 0;
-        for (let perf of data['performances']) {
-            result += perf.volumeCredits;
-        }
-        return result;
+    function totalVolumeCredits(data) {
+        return data.performances
+        .reduce((total, p) => total + p.volumeCredits, 0);
     }    
     return renderPlainText(statementData, plays);
 }
