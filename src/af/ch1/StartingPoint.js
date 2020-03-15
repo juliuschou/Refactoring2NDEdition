@@ -29,11 +29,17 @@ let rlt = statement(invoices[0], plays);
 console.log(rlt);
 
 function statement(invoice, plays) {
+    return renderPlainText(createStatementData(invoice, plays));
+}
+
+function createStatementData(invoice, plays){
     const statementData = {};
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerformance);
     statementData.totalAmount = totalAmount(statementData);
     statementData.totalVolumeCredits = totalVolumeCredits(statementData);
+
+    return statementData;    
 
     function enrichPerformance(aPerformance) {
         const result = Object.assign({}, aPerformance);
@@ -91,9 +97,7 @@ function statement(invoice, plays) {
         return data.performances
         .reduce((total, p) => total + p.volumeCredits, 0);
     }    
-    return renderPlainText(statementData, plays);
 }
-
 
 
 function renderPlainText(data) {
