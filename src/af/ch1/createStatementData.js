@@ -9,6 +9,7 @@ export default function createStatementData (invoice, plays) {
     return statementData;    
 
     function enrichPerformance(aPerformance) {
+        const calculator = new PerformanceCalculator(aPerformance);
         const result = Object.assign({}, aPerformance);
         result.play = playFor(result);
         result.amount = amountFor(result);
@@ -66,7 +67,11 @@ export default function createStatementData (invoice, plays) {
     }    
 }
 
-
+class PerformanceCalculator {
+    constructor(aPerformance) {
+        this.performance = aPerformance;
+    }
+}
 
 /*
 https://larry850806.github.io/2016/09/20/shallow-vs-deep-copy/
