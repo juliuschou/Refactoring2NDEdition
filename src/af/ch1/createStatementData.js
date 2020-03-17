@@ -59,9 +59,11 @@ class PerformanceCalculator {
 
     get volumeCredits(){
         let result = 0;
-        result += Math.max(this.performance.audience - 30, 0);
+        result += Math.max(this.performance.audience - 30, 0);    
         return result;
     }
+
+
 }
 
 class TragedyCalculator extends PerformanceCalculator {
@@ -84,9 +86,7 @@ class ComedyCalculator extends PerformanceCalculator {
         return result;
     }
 
-    get volumeCredits() {
-        return super.volumeCredits + Math.floor(this.performance.audience / 5);
-    }    
+    
 }
 /*
 https://larry850806.github.io/2016/09/20/shallow-vs-deep-copy/
