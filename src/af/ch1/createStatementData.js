@@ -54,27 +54,14 @@ class PerformanceCalculator {
     }
 
     get amount() {
-        let result = 0;
-        switch (this.play.type) {
-            case "tragedy":
-                throw 'bad thing';
-            case "comedy":
-                throw 'bad thing2';
-            default:
-                throw new Error(`unknown type: ${this.play.type}`);
-        }
-        return result;
+        throw new Error('subclass responsibility');
     }
 
     get volumeCredits(){
         let result = 0;
         result += Math.max(this.performance.audience - 30, 0);
-        if ('comedy' === this.play.type) result += Math.floor(this.performance.audience / 5);
-    
         return result;
     }
-
-
 }
 
 class TragedyCalculator extends PerformanceCalculator {
@@ -89,7 +76,7 @@ class TragedyCalculator extends PerformanceCalculator {
 
 class ComedyCalculator extends PerformanceCalculator {
     get amount() {
-        result = 30000;
+        let result = 30000;
         if (this.performance.audience > 20) {
             result += 10000 + 500 * (this.performance.audience - 20);
         }
@@ -97,6 +84,9 @@ class ComedyCalculator extends PerformanceCalculator {
         return result;
     }
 
+    get volumeCredits() {
+        return super.volumeCredits + Math.floor(this.performance.audience / 5);
+    }    
 }
 /*
 https://larry850806.github.io/2016/09/20/shallow-vs-deep-copy/
