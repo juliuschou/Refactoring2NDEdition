@@ -20,11 +20,7 @@ export default function createStatementData (invoice, plays) {
     function playFor(aPerformance) {
         return plays[aPerformance.playID];
     }    
-    
-    function volumeCreditsFor(aPerformance){
-        return new PerformanceCalculator(aPerformance, playFor(aPerformance)).volumeCredits;
-    }
-    
+        
     /*
         https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
         arr.reduce(callback[accumulator, currentValue, currentIndex, array], initialValue)
