@@ -59,12 +59,7 @@ class PerformanceCalculator {
             case "tragedy":
                 throw 'bad thing';
             case "comedy":
-                result = 30000;
-                if (this.performance.audience > 20) {
-                    result += 10000 + 500 * (this.performance.audience - 20);
-                }
-                result += 300 * this.performance.audience;
-                break;
+                throw 'bad thing2';
             default:
                 throw new Error(`unknown type: ${this.play.type}`);
         }
@@ -93,8 +88,16 @@ class TragedyCalculator extends PerformanceCalculator {
 }
 
 class ComedyCalculator extends PerformanceCalculator {
-}
+    get amount() {
+        result = 30000;
+        if (this.performance.audience > 20) {
+            result += 10000 + 500 * (this.performance.audience - 20);
+        }
+        result += 300 * this.performance.audience;
+        return result;
+    }
 
+}
 /*
 https://larry850806.github.io/2016/09/20/shallow-vs-deep-copy/
 Object.assign
