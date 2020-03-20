@@ -70,6 +70,8 @@ function statement(invoice, plays) {
     return result;
 
     function amountFor(perf, play){
+        let thisAmount = 0;
+        
         switch (play.type) {
             case 'tragedy':
                 thisAmount = 40000;
