@@ -69,7 +69,7 @@ function statement(invoice, plays) {
     result += `You earned ${volumeCredits} credits\n`;
     return result;
 
-    function amountFor(){
+    function amountFor(perf, play){
         switch (play.type) {
             case 'tragedy':
                 thisAmount = 40000;
