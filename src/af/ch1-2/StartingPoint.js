@@ -77,7 +77,7 @@ function statement(invoice, plays) {
             default:
                 throw new Error(`unknown type: ${play.type}`);
         }
-       
+       return result;
     }
 
 }
