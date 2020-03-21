@@ -29,9 +29,9 @@ let rlt = statement(invoices[0], plays);
 console.log(rlt);
 
 function statement(invoice, plays) {
-    let totalAmount = 0;
     let result = `Statement for ${invoice.customer}\n`;
 
+    let totalAmount = 0;
     for (let perf of invoice['performances']) {
         let thisAmount = amountFor(perf, playFor(perf));
 
