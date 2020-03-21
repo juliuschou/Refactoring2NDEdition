@@ -1,4 +1,5 @@
-// node ./node_modules/.bin/babel-node src/xx.js
+// ./node_modules/.bin/babel src --out-dir dist
+// node ./dist/af/ch1-2/StartingPoint.js
 
 let plays = {
     hamlet: { name: 'Hamlet', type: 'tragedy' },
@@ -51,6 +52,10 @@ function statement(invoice, plays) {
     result += `Amount owed is ${format(totalAmount / 100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
     return result;
+
+    function volumeCreditsFor(){
+        
+    }
 
     function playFor(aPerformance) {
         return plays[aPerformance.playID];
