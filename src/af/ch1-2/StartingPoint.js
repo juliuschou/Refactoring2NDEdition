@@ -31,13 +31,7 @@ console.log(rlt);
 function statement(invoice, plays) {
     let result = `Statement for ${invoice.customer}\n`;
 
-    let totalAmount = 0;
-    for (let perf of invoice['performances']) {
-        let thisAmount = amountFor(perf, playFor(perf));
-
-        result += ` ${playFor(perf).name}: ${usd(thisAmount / 100)} (${perf.audience} seats)\n`;
-        totalAmount += thisAmount;
-    }
+    let totalAmount = appleSauce();
 
     result += `Amount owed is ${usd(totalAmount / 100)}\n`;
     result += `You earned ${totalVolumeCredits()} credits\n`;
@@ -51,7 +45,7 @@ function statement(invoice, plays) {
             result += ` ${playFor(perf).name}: ${usd(thisAmount / 100)} (${perf.audience} seats)\n`;
             totalAmount += thisAmount;
         }
-           
+        return totalAmount; 
     }
 
     function totalVolumeCredits(){
