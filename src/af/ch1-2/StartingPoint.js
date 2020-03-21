@@ -41,8 +41,7 @@ function statement(invoice, plays) {
        
         // add volume credits
         volumeCredits += volumeCreditsFor(perf);
-        // add extra credit for every ten comedy attendees
-        if ('comedy' === playFor(perf).type) volumeCredits += Math.floor(perf.audience / 5);
+
         // print line for this order
         result += ` ${playFor(perf).name}: ${format(thisAmount / 100)} (${
       perf.audience
