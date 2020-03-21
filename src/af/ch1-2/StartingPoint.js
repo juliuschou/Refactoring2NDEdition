@@ -44,7 +44,14 @@ function statement(invoice, plays) {
     return result;
 
     function appleSauce(){
-        
+        let totalAmount = 0;
+        for (let perf of invoice['performances']) {
+            let thisAmount = amountFor(perf, playFor(perf));
+    
+            result += ` ${playFor(perf).name}: ${usd(thisAmount / 100)} (${perf.audience} seats)\n`;
+            totalAmount += thisAmount;
+        }
+           
     }
 
     function totalVolumeCredits(){
