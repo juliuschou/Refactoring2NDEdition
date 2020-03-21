@@ -1,5 +1,5 @@
 // ./node_modules/.bin/babel src --out-dir dist
-// node ./dist/af/ch1-2/StartingPoint.js
+//  node ./dist/af/ch1SplitPhase/StartingPoint.js
 
 let plays = {
     hamlet: { name: 'Hamlet', type: 'tragedy' },
@@ -29,6 +29,10 @@ let rlt = statement(invoices[0], plays);
 console.log(rlt);
 
 function statement(invoice, plays) {
+    return renderPlainText(invoice, plays);
+}
+
+function renderPlainText(invoice, plays) {
     let result = `Statement for ${invoice.customer}\n`;
 
     for (let perf of invoice['performances']) {
