@@ -29,10 +29,11 @@ let rlt = statement(invoices[0], plays);
 console.log(rlt);
 
 function statement(invoice, plays) {
-    return renderPlainText(invoice, plays);
+    const statementData = {};
+    return renderPlainText(statementData, invoice, plays);
 }
 
-function renderPlainText(invoice, plays) {
+function renderPlainText(statementData, invoice, plays) {
     let result = `Statement for ${invoice.customer}\n`;
 
     for (let perf of invoice['performances']) {
