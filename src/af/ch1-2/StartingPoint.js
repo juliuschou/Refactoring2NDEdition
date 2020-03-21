@@ -29,14 +29,15 @@ let rlt = statement(invoices[0], plays);
 console.log(rlt);
 
 function statement(invoice, plays) {
-    let totalAmount = 0;
     let result = `Statement for ${invoice.customer}\n`;
 
     for (let perf of invoice['performances']) {
-        let thisAmount = amountFor(perf, playFor(perf));
+        result += ` ${playFor(perf).name}: ${usd(amountFor(perf, playFor(perf)) / 100)} (${perf.audience} seats)\n`;
+    }
 
-        result += ` ${playFor(perf).name}: ${usd(thisAmount / 100)} (${perf.audience} seats)\n`;
-        totalAmount += thisAmount;
+    let totalAmount = 0;
+    for (let perf of invoice['performances']) {
+        totalAmount += amountFor(perf, playFor(perf));
     }
 
     result += `Amount owed is ${usd(totalAmount / 100)}\n`;
