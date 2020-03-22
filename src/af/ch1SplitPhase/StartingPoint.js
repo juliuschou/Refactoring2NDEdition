@@ -32,6 +32,7 @@ function statement(invoice, plays) {
     const statementData = {};
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerformance);
+    statementData.totalAmount = totalAmount(statementData);
     return renderPlainText(statementData, plays);
 
     function enrichPerformance(aPerformance) {
@@ -42,6 +43,14 @@ function statement(invoice, plays) {
         return result;
     }
     
+    function totalAmount(data){
+        let result = 0;
+        for (let perf of data['performances']) {
+            result += perf.amount;
+        }    
+        return result;
+    }
+
     function volumeCreditsFor(aPerformance){
         let result = 0;
         result += Math.max(aPerformance.audience - 30, 0);
@@ -83,17 +92,9 @@ function renderPlainText(data, plays) {
         result += ` ${perf.play.name}: ${usd(perf.amount / 100)} (${perf.audience} seats)\n`;
     }
 
-    result += `Amount owed is ${usd(totalAmount() / 100)}\n`;
+    result += `Amount owed is ${usd(data.totalAmount / 100)}\n`;
     result += `You earned ${totalVolumeCredits()} credits\n`;
     return result;
-
-    function totalAmount(){
-        let result = 0;
-        for (let perf of data['performances']) {
-            result += perf.amount;
-        }    
-        return result;
-    }
 
     function totalVolumeCredits(){
         let result = 0;
