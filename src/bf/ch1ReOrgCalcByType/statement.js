@@ -1,5 +1,5 @@
 // ./node_modules/.bin/babel src --out-dir dist
-//  node ./dist/af/ch1SplitPhase/StartingPoint.js
+//  node ./dist/af/ch1SplitPhase/statement.js
 
 import createStatementData from './createStatementData.js'
 
