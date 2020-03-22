@@ -26,13 +26,19 @@ export default function createStatementData(invoice, plays) {
     }
 
     class TragedyCalculator extends PerformanceCalculator {
-  
+        get amount(){
+            result = 40000;
+            if (this.performance.audience > 30) {
+                result += 1000 * (this.performance.audience - 30);
+            }
+            return result;
+        }
     }
     
     class ComedyCalculator extends PerformanceCalculator {
         
     }    
-    
+
     class PerformanceCalculator {
         constructor(aPerformance, aPlay) {
             this.performance = aPerformance;
@@ -51,11 +57,7 @@ export default function createStatementData(invoice, plays) {
             
             switch (this.play.type) {
                 case 'tragedy':
-                    result = 40000;
-                    if (this.performance.audience > 30) {
-                        result += 1000 * (this.performance.audience - 30);
-                    }
-                    break;
+                    throw 'bad thing';
                 case 'comedy':
                     result = 30000;
                     if (this.performance.audience > 20) {
