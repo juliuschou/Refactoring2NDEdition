@@ -104,14 +104,6 @@ function renderPlainText(data, plays) {
     result += `Amount owed is ${usd(data.totalAmount / 100)}\n`;
     result += `You earned ${data.totalVolumeCredits} credits\n`;
     return result;
-
-    function totalVolumeCredits(){
-        let result = 0;
-        for (let perf of data['performances']) {
-            result += perf.volumeCredits;
-        }
-        return result;
-    }
     
     function usd(aNumber){
         return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(aNumber);
